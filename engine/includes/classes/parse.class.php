@@ -155,6 +155,8 @@ class parse {
 		$content	=	preg_replace("#\[br\]#is", "<br/>", $content);
 		$content	=	preg_replace("#\[hr\]#is", "<hr/>", $content);
 		$content	=	preg_replace("#\[small\](.*?)\[/small\]#is","<small>$1</small>", $content);
+		$content	=	preg_replace("#\[sub\](.*?)\[/sub\]#is","<sub>$1</sub>", $content);
+		$content	=	preg_replace("#\[sup\](.*?)\[/sup\]#is","<sup>$1</sup>", $content);
 		
 		// Process font size
         while (preg_match("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", $content, $null))
