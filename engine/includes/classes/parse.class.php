@@ -154,6 +154,8 @@ class parse {
 		$content	=	preg_replace("#\[justify\](.*?)\[/justify\]#is","<p style=\"text-align: justify\">$1</p>", $content);
 		$content	=	preg_replace("#\[br\]#is", "<br/>", $content);
 		$content	=	preg_replace("#\[hr\]#is", "<hr/>", $content);
+		$content	=	preg_replace("#\[small\](.*?)\[/small\]#is","<small>$1</small>", $content);
+		
 		// Process font size
         while (preg_match("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", $content, $null))
            $content    =    preg_replace("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", '<font size="$1">$2</font>', $content);
