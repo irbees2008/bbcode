@@ -153,7 +153,10 @@ class parse {
 		$content	=	preg_replace("#\[center\](.*?)\[/center\]#is","<p style=\"text-align: center\">$1</p>", $content);
 		$content	=	preg_replace("#\[justify\](.*?)\[/justify\]#is","<p style=\"text-align: justify\">$1</p>", $content);
 		$content	=	preg_replace("#\[br\]#is", "<br/>", $content);
+		// Process font size
+        while (preg_match("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", $content, $null))
 
+           $content    =    preg_replace("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", '<font size="$1">$2</font>', $content);
 		// Process spoilers
 		while (preg_match("#\[spoiler\](.*?)\[/spoiler\]#is", $content, $null))
 			$content	=	preg_replace("#\[spoiler\](.*?)\[/spoiler\]#is", '<div class="spoiler"><div class="sp-head" onclick="toggleSpoiler(this.parentNode, this);"><b></b>'.$lang['bb_spoiler'].'</div><div class="sp-body">$1</div></div>', $content);
