@@ -157,11 +157,15 @@ class parse {
 		$content	=	preg_replace("#\[small\](.*?)\[/small\]#is","<small>$1</small>", $content);
 		$content	=	preg_replace("#\[sub\](.*?)\[/sub\]#is","<sub>$1</sub>", $content);
 		$content	=	preg_replace("#\[sup\](.*?)\[/sup\]#is","<sup>$1</sup>", $content);
-		$content    =    preg_replace("#\[bgcolor=(.*?)\](.*?)\[/bgcolor\]#is", "<span style=\"background-color:$1; display:inline;\">$2</div>", $content);
+		
+		// Process bgcolor
+        while (preg_match("#\[bgcolor=\"(.+?)\"\](.*?)\[/bgcolor\]#is", $content, $null))
+           $content    =    preg_replace("#\[bgcolor=\"(.+?)\"\](.*?)\[/bgcolor\]#is", '<span style="background-color: $1 ; display:inline;">$2</span>', $content);
+		
 		// Process font size
         while (preg_match("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", $content, $null))
            $content    =    preg_replace("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", '<font size="$1">$2</font>', $content);
-		// Process font size
+		// Process font face
         while (preg_match("#\[font=\"(.+?)\"\](.*?)\[/font\]#is", $content, $null))
            $content    =    preg_replace("#\[font=\"(.+?)\"\](.*?)\[/font\]#is", '<font face="$1">$2</font>', $content);   
 		// Process spoilers
