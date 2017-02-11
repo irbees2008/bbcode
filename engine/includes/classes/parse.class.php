@@ -159,9 +159,11 @@ class parse {
 		$content	=	preg_replace("#\[sup\](.*?)\[/sup\]#is","<sup>$1</sup>", $content);
 		
 		// Process bgcolor
+        while (preg_match("#\[h=\"(.+?)\"\](.*?)\[/h=\]#is", $content, $null))
+           $content    =    preg_replace("#\[h=\"(.+?)\"\](.*?)\[/h=\]#is", '<h$1>$2</h$1>', $content);
+		// Process bgcolor
         while (preg_match("#\[bgcolor=\"(.+?)\"\](.*?)\[/bgcolor\]#is", $content, $null))
            $content    =    preg_replace("#\[bgcolor=\"(.+?)\"\](.*?)\[/bgcolor\]#is", '<span style="background-color: $1 ; display:inline;">$2</span>', $content);
-		
 		// Process font size
         while (preg_match("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", $content, $null))
            $content    =    preg_replace("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", '<font size="$1">$2</font>', $content);
