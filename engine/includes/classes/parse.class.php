@@ -158,14 +158,19 @@ class parse {
 		$content	=	preg_replace("#\[sub\](.*?)\[/sub\]#is","<sub>$1</sub>", $content);
 		$content	=	preg_replace("#\[sup\](.*?)\[/sup\]#is","<sup>$1</sup>", $content);
 		
-		// Process bgcolor
+		// Process h
         while (preg_match("#\[h=\"(.+?)\"\](.*?)\[/h=\]#is", $content, $null))
            $content    =    preg_replace("#\[h=\"(.+?)\"\](.*?)\[/h=\]#is", '<h$1>$2</h$1>', $content);
 		// Process bgcolor
         while (preg_match("#\[bgcolor=\"(.+?)\"\](.*?)\[/bgcolor\]#is", $content, $null))
            $content    =    preg_replace("#\[bgcolor=\"(.+?)\"\](.*?)\[/bgcolor\]#is", '<span style="background-color: $1 ; display:inline;">$2</span>', $content);
+		// Process ustyle
+        while (preg_match("#\[ustyle=\"(.+?)\"\](.*?)\[/ustyle\]#is", $content, $null))
+           $content    =    preg_replace("#\[ustyle=\"(.+?)\"\](.*?)\[/ustyle\]#is", '<div style="padding:0.5 em;background: $1; border:1px solid $1;">$2</span>', $content);
+		
 		// Process font size
-        while (preg_match("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", $content, $null))
+       while (preg_match("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", $content, $null))
+
            $content    =    preg_replace("#\[size=\"(.+?)\"\](.*?)\[/size\]#is", '<font size="$1">$2</font>', $content);
 		// Process font face
         while (preg_match("#\[font=\"(.+?)\"\](.*?)\[/font\]#is", $content, $null))
